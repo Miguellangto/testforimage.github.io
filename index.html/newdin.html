@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Website</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+  }
+  header {
+    background-color: #36454F;
+    padding: 20px;
+    text-align: center;
+  }
+  header img {
+    width: 150px; /* Adjust the width according to your logo size */
+    height: auto; /* Maintain aspect ratio */
+  }
+  footer {
+    background-color: #36454F;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .carousel {
+    display: flex;
+    overflow: hidden;
+    justify-content: center; /* Center items horizontally */
+  }
+  .video-container {
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+  }
+  .video {
+    width: 100%;
+    max-width: 560px; /* Limit video width */
+    flex: 0 0 auto;
+    display: none;
+  }
+  .video.active {
+    display: block;
+  } <style>
+    
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #36454F;
+      padding: 20px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    
+   .navigation-links {
+  display: right;
+  align-items: center; 
+}
+
+  .navigation-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px; /* Adjust the font size as needed */
+    font-family: Arial, sans-serif; /* Change the font if necessary */
+    margin: 0 10px; 
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: color 0.5s ease;
+  }
+    
+
+    
+    .navigation-links a.active,
+    .navigation-links a:hover {
+      color: orange
+    }
+
+  .controls {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+
+</style>
+</head>
+<body>
+
+
+
+
+<header>
+  <img src="C:\Users\Miguel\Downloads\output-onlinepngtools (2).png" alt="sipsiphooray Logo"> <div class="fixed-header">
+    
+  <div class="navigation-links">
+    <a href="index.html" class="nav-link">VIDEOS</a>
+    <a href="any.html" class="nav-link">ANALYTICS</a>
+    </div>
+</div>
+
+
+</header>
+
+<main>
+  <div class="carousel">
+    <div class="video-container">
+      <div class="video active">
+        <!-- First video here -->
+       <iframe width="560" height="450" src="https://www.youtube.com/embed/yaSEGwFw_0c" title="Let&#39;s make butterscotch brownies!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>     </div>
+    </div>
+  </div>
+  <div class="controls">
+    <button onclick="prevVideo()">Previous</button>
+    <button onclick="nextVideo()">Next</button>
+  </div>
+<h1>Video #2</h1>
+</main>
+
+<footer>
+  <p>&copy; 2024 SipSipHooray. All rights reserved.</p>
+</footer>
+
+<script>
+  let currentVideoIndex = 0;
+  let currentPlayer;
+
+  const videos = document.querySelectorAll('.video');
+
+  function showVideo(index) {
+    if (currentPlayer) {
+      currentPlayer.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    }
+
+    videos.forEach((video, i) => {
+      if (i === index) {
+        video.classList.add('active');
+        currentPlayer = video.querySelector('iframe').contentWindow;
+      } else {
+        video.classList.remove('active');
+      }
+    });
+  }
+
+  function prevVideo() {
+    currentVideoIndex = (currentVideoIndex === 0) ? videos.length - 1 : currentVideoIndex - 1;
+    // Redirect to the new HTML file when clicking "Previous" button
+    window.location.href = 'index.html'; // Change 'new.html' to your desired HTML file
+  }
+
+  function nextVideo() {
+    currentVideoIndex = (currentVideoIndex === videos.length - 1) ? 0 : currentVideoIndex + 1;
+    // Redirect to the new HTML file when clicking "Next" button
+    window.location.href = 'index.html'; // Change 'new.html' to your desired HTML file
+  }
+</script>
+
+</body>
+</html>
